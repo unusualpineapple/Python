@@ -5,3 +5,6 @@ class User:
     def 
 
 class BankAccount:
+    def __init__(self):
+        self.account = 0
+        
