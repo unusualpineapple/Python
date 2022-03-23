@@ -25,7 +25,7 @@ class User:
         return self
 
     def make_withdrawl(self, amount):
-        self.account -= amount
+        self.BankAccount(account) -= amount
         return self
 
     def display_user_balance (self):
@@ -33,7 +33,7 @@ class User:
         return self
 
 anthony = User("anthony", "savings", 100, .05, "checking", 200, .01)
-anthony.make_deposit("savings", 300, .05)
+anthony.make_deposit(300)
 #anthony.savings.make_deposit()
 print(anthony.savings, anthony.checking)
 # anthony.make_deposit(100).make_withdrawl(50).display_user_balance()

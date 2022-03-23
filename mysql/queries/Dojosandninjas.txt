@@ -1,0 +1,45 @@
+Add 3 dojos
+
+SELECT * FROM dojos_ninjas.dojos;
+INSERT INTO dojos (name)  VALUES ("SMOKINGWEENIES", "JUMPING FOR JOY", "WILD RAINBOWS")
+
+delete 3 dojos
+DELETE FROM dojos WHERE id = 1
+DELETE FROM dojos WHERE id = 2
+DELETE FROM dojos WHERE id = 3
+
+Add 3 dojos
+SELECT * FROM dojos_ninjas.dojos;
+INSERT INTO dojos (name)  VALUES ("SMOKINGWEENIES", "JUMPING FOR JOY", "WILD RAINBOWS")
+
+add 3 ninjas to the first dojo
+SELECT * FROM dojos_ninjas.ninjas;
+INSERT INTO ninjas (first_name, last_name, age, dojo_id) 
+VALUES ("Jenny", "Lids", 64, 5), ("Tim","Longbeard", 55, 5), ("Adam", "Longbottom", 72, 5);
+
+add 3 ninjas to the second dojo
+SELECT * FROM dojos_ninjas.ninjas;
+INSERT INTO ninjas (first_name, last_name, age, dojo_id) 
+VALUES ("McKorrick", "Speed", 27, 8);
+
+add 3 ninjas to the third dojo
+SELECT * FROM dojos_ninjas.ninjas;
+INSERT INTO ninjas (first_name, last_name, age, dojo_id) 
+VALUES ("John", "Bradford", 36, 9);
+
+retrieve ninjas from the first dojo
+SELECT *
+FROM dojos
+LEFT JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE dojo_id = 5;
+
+retrieve ninjas from the last dojo
+SELECT * FROM dojos
+LEFT JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE dojo_id = 9; 
+
+retrieve ninjas from the second dojo
+SELECT *
+FROM dojos
+LEFT JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE dojo_id = 7;
