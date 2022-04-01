@@ -18,5 +18,5 @@ def index3(x,y):
 def index4(x,y,this,that):
     return render_template("index.html", row = x, col = y, background1=this, background2=that)
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
