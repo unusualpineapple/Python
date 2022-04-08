@@ -7,6 +7,14 @@
     <title>first flask</title>
 </head>
 <body>
-    
+
+<h1>All My Friends</h1>
+{% for one_friend in all_friends %}
+    <p>First Name: {{one_friend.first_name}}</p>
+    <p>Last Name: {{one_friend.last_name}}</p>
+    <p>Occupation: {{one_friend.occupation}}</p>
+    <hr>
+{% endfor %}
+
 </body>
 </html>
