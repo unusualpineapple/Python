@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dojo ninjas</title>
+</head>
+
+<body>
+    <div>
+        <div action="/dojo/%(id)s">
+            <h2>
+                {{gotit.name}}
+            </h2>
+            <table>
+                <th>
+                    <tr>
+                        <td>First name</td>
+                        <td>Last Name</td>
+                        <td>Age</td>
+                    </tr>
+                </th>
+                <tbody>
+                    {% for nin in n %}
+                    <tr>
+                        <td>{{nin.first_name}}</td>
+                        <td>{{nin.last_name}}</td>
+                        <td>{{nin.age}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
