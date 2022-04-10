@@ -28,14 +28,14 @@ class Dojo:
 
     @classmethod
     def getoneandninjas (cls, data):
-        query = "Select * from dojos left join ninjas on dojos.id = ninjas.dojo_id where dojo_id = %(id)s;"
+        query = "Select * from dojos left join ninjas on dojos.id = ninjas.dojos_id where dojos.id = %(id)s;"
         results = connectToMySQL('Dojos_ninjas').query_db(query,data)
         print(results)
-        dojo = cls(results)
+        dojo = cls(results[0])
         for nin in results:
             n = {
                 'id':nin['ninjas.id'],
-                'first_name':nin['first_named'],
+                'first_name':nin['first_name'],
                 'last_name':nin['last_name'],
                 'age':nin['age'],
                 'created_at':nin['ninjas.created_at'],

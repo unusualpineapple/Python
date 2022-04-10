@@ -4,9 +4,9 @@ from flask_app.models import ninja, dojo
 
 @app.route('/ninjas')
 def ninjas():
-    return render_template('create_ninja.html', dojos = dojo.Dojo.get_all())
+    return render_template('create_ninja.html', all_dojos = dojo.Dojo.get_all())
 
-@app.route('/create/ninja', methods=['post'])
+@app.route('/ninja/create', methods=['POST'])
 def createninja():
     ninja.Ninja.save(request.form)
     return redirect ('/')

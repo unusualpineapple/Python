@@ -21,6 +21,6 @@ class Ninja:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO users (first_name,last_name,age,dojo_id) VALUES (%(first_name)s,%(last_name)s,%(age)s, %(dojo_id)s);"
+        query = "INSERT INTO ninjas (first_name,last_name,age,dojos_id) VALUES (%(first_name)s,%(last_name)s,%(age)s, %(dojo_id)s);"
         result = connectToMySQL('Dojos_ninjas').query_db(query,data)
         return result
