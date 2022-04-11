@@ -8,7 +8,7 @@ class Survey:
         self.location = data['location']
         self.language = data['language']
         self.comment = data['comment']
-        self.codinglanguage = ['codinglanguage']
+        self.codinglanguage = data['codinglanguage']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
@@ -47,4 +47,7 @@ class Survey:
     def getone(cls):
         query = "select * from dojostable order by dojostable.id desc limit 1; "
         results = connectToMySQL('dojo_survey_schema').query_db(query)
-        return Survey(results[0])
+        print(results)
+        surveyresults = Survey(results[0])
+        # return Survey(results[0])
+        return surveyresults
