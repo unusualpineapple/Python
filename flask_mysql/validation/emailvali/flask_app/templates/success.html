@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOW THEM EMAILS</title>
+</head>
+
+<body>
+    <form action="/success">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <h2>Emails that are in here</h2>
+        {% for e in email %}
+        <table>
+            <td>
+                <tr>
+                    {{e.email}} {{e.updated_at}}
+                    <a href="/delete/{{e.id}}"> delete</a>
+                </tr>
+            </td>
+        </table>
+        {% endfor %}
+    </form>
+    <a href="/">HOME</a>
+</body>
+
+</html>
