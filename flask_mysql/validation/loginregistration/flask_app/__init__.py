@@ -1,5 +1,5 @@
 from flask import Flask
 
-__name__ = Flask(__name__)
+app = Flask(__name__)
 
-app = Flask(__name)
+app.secret_key = "want to login huh goodluck"
