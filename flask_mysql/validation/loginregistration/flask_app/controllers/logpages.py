@@ -33,11 +33,11 @@ def login():
     data = {"email":request.form["email"]}
     email_in_db = User.get_by_email(data)
     if not email_in_db:
-        flash("INVALID EMAIL OR PASSWORD MANGGGGG")
+        flash("INVALID EMAIL MANGGGGG CANT REMEMBER??")
         return redirect('/')
     if not bcrypt.check_password_hash(email_in_db.password, request.form['password']):
-            flash("AGAIN INVALID EMAIL OR PASSWORD")
-            return redirect('/')
+        flash("AGAIN PASSWORD is not right TRY AGAIN")
+        return redirect('/')
     session['user_id'] = email_in_db.id
     return redirect("/submission")
 
