@@ -1,5 +1,3 @@
-from unittest import result
-from winreg import QueryInfoKey
 from flask_app.config.pymysqlconnection import MySQLConnection, connectToMySQL
 from flask_bcrypt import Bcrypt
 from flask import flash
@@ -25,20 +23,20 @@ class User:
     @classmethod
     def grabuser(cls):
         query = 'select firstname, lastname from account'
-        result = connectToMySQL('loginreg').query_db(query)
+        result = connectToMySQL('privatewall').query_db(query)
         return result
 
     @classmethod
     def insertuser(cls, data):
         query = 'insert into account (firstname, lastname, email, password, created_at, updated_at) values (%(firstname)s, %(lastname)s, %(email)s, %(password)s, NOW(), NOW());'
-        result = connectToMySQL('loginreg').query_db(query,data)
+        result = connectToMySQL('privatewall').query_db(query,data)
         
         return result
     
     @classmethod
     def get_by_email(cls,data):
         query = 'SELECT * from account where email = %(email)s'
-        result = connectToMySQL('loginreg').query_db(query,data)
+        result = connectToMySQL('privatewall').query_db(query,data)
         if len(result) <1:
             return False
         return cls(result[0])
@@ -46,33 +44,33 @@ class User:
     @classmethod
     def get_by_id(cls,data):
         query = 'select * from account where id = %(id)s'
-        result = connectToMySQL('loginreg').query_db(query, data)
+        result = connectToMySQL('privatewall').query_db(query, data)
         return cls(result[0])
 
     @staticmethod
     def validation(result):
         is_valid = True
         query = 'select * from account where email = %(email)s'
-        results = connectToMySQL('loginreg').query_db(query, result)
+        results = connectToMySQL('privatewall').query_db(query, result)
         if len(result['firstname']) <= 1:
             flash('dude how short is your name??')
             is_valid = False
         if len(result['lastname']) <= 1:
             flash('what country are you from????')
             is_valid = False
-        if len(result['email']) <= 15:            
+        if len(result['email']) <= 2:            
             flash('ha your email is too short try again')
             is_valid = False
         if len(results) >= 1:
             flash('wow buddy thats ther same one try again')
             is_valid = False
-        if not PWupnum.match(result['password']):
-            flash('need to add an upper case and a number')
-            is_valid = False
+        # if not PWupnum.match(result['password']):
+        #     flash('need to add an upper case and a number')
+        #     is_valid = False
         if not EREG.match(result['email']):
             flash('hey dog your email isnt an email what you doing????????')
             is_valid = False
-        if len(result['password']) <= 27:
+        if len(result['password']) <= 2:
             flash('your password is long make it longer')
             is_valid = False
         if not result['password'] == result['confirmpassword']:
