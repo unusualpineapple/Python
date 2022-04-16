@@ -22,7 +22,7 @@ def saveuser():
         "password": hash_
     }
     user_id = User.insertuser(data)
-    session['user'] = user_id
+    session['user_id'] = user_id
     print("IT WAS SUCCESSFUL GOOD JOB")
     return redirect('/submission')
 
@@ -37,22 +37,15 @@ def login():
         flash("AGAIN PASSWORD is not right TRY AGAIN")
         return redirect('/')
     session['user_id'] = email_in_db.id
-    return redirect("/submission2")
+    return redirect("/submission")
 
 @app.route('/submission')
 def subpage():
-    # if 'user_id' not in session:
-    #     print('not in session')
-    #     return redirect('/logout')
+    if 'user_id' not in session:
+        print('not in session')
+        return redirect('/logout')
     data = {
-        "id": session['user']
-    }
-    return render_template('submission.html', account = User.get_by_id(data))
-
-@app.route('/submission2')
-def subpage2():
-    data = {
-        "id":session['user_id']
+        "id": session['user_id']
     }
     return render_template('submission.html', account = User.get_by_id(data))
 

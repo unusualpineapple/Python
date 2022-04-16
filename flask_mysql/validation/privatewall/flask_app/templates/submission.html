@@ -9,8 +9,31 @@
     <title>USER</title>
 </head>
 <body>
-    <h2>Welcome {{account.firstname}}</h2>
-    <a href='/logout'>Logout</a>
+    <header>
+        <h1>Coding dojo wall :D</h1>
+        <h2>Welcome {{account.firstname}}</h2>
+        <a href='/logout'>Logout</a>
+    </header>
+    <form action="deletemessage">
+        <h2>{{sum(message.message)}}'s for you </h2>
+        {% for user in users %}
+        {{message.receiver_name}} said ({{message.created_at}})
+        <p>{{user.message}}</p>
+        <img src="" alt="trashcan" action="">
+        {% endfor %}
     </form>
+    <form action="sendall", method="post">
+        <h2>Send Messages</h2>
+        <p>you have sent {{message.sender_name}} so far</p>
+        {%for user in users %}
+        <form action="sendmessage">
+            <p>{message.receiver_name}</p>
+            <textarea name="message"></textarea>
+            <a href="sendmessage">Send</a>
+        {% endfor %}
+        <input type="submit" action='sendall'>
+        </form>
+    </form>
+
 </body>
 </html>

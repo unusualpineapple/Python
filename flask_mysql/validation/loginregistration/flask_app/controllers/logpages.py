@@ -1,5 +1,3 @@
-import email
-from unittest import result
 from flask_app import app
 from flask_bcrypt import Bcrypt
 from flask import render_template, request, redirect, session, flash
