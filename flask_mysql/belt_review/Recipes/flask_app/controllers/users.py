@@ -3,6 +3,7 @@ from flask import render_template, request, redirect, session, flash
 from flask_app.models import user
 from flask_app import app
 from flask_bcrypt import Bcrypt
+from flask_app.models.recipe import Creation
 
 bcrypt = Bcrypt(app)
 
@@ -24,7 +25,7 @@ def saveuser():
         "password": hash_
     }
     user_id = User.createuser(data)
-    session['user'] = user_id
+    session['user_id'] = user_id
     print("it was successful")
     return redirect('/dashboard')
 
@@ -38,17 +39,17 @@ def login():
     if not bcrypt.check_password_hash(emailInDB.password, request.form['password']):
         flash('wrong password try again')
         return redirect('/')
-    session['user'] = emailInDB.id
+    session['user_id'] = emailInDB.id
     return redirect('/dashboard')
 
 @app.route('/dashboard')
 def dash():
-    if 'user' not in session:
+    if 'user_id' not in session:
         return redirect('/logout')
     data = {
-        "id": session['user']
+        "id": session['user_id']
     }
-    return render_template('dashboard.html', user = User.getByID(data))
+    return render_template('dashboard.html', user = User.getByID(data), creation=Creation.getCreations())
 
 @app.route('/logout')
 def logout():

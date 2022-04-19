@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <h1>Add New Recipe</h1>
+        <h1>edit new creation</h1>
         <a href="/dashboard">dashboard</a>
         <a href="/logout">Logout</a>
     </header>
@@ -23,9 +23,9 @@
     </div>
     {% endif %}
     {% endwith %}
-    <form action="/create/creation" method="post">
-        <label for="name">name creation</label>
-        <input type="text" name="name">
+    <form action="/update/creation" method="post">
+        <label for="name">name </label>
+        <input type="text" name="name" value="{{creation.name}}">
 
         <label for="description">what is this creation</label>
         <textarea name="description"></textarea>
@@ -37,10 +37,10 @@
         <input type="date" name="date">
 
         <label for="time">under 30 minutes??</label>
-        <input type="radio" name="time" value="0">Yes
-        <input type="radio" name="time" value="1">No
+        <input type="radio" name="time" value="Yes">Yes
+        <input type="radio" name="time" value="No">No
         
-        <input type="submit" value="new creation">
+        <input type="submit" value="update creation">
 
     </form>
 

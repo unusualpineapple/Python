@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome {{user.firstName}}</h1>
+        <a href='/dashboard'>dashboard</a>
+        <a href="/logout">Logout</a>
+    </header>
+    <div>
+        <h2>{{creation.name}}</h2>
+        <p>
+            <p>Description: {{creation.description}}</p>
+            <p>under 30: {{creation.time}}</p>
+            <p>intructions: {{creation.instructions}}</p>
+            <p>date made: {{creation.date}}</p>
+        </p>
+    </div>
+        
+
+</body>
+</html>

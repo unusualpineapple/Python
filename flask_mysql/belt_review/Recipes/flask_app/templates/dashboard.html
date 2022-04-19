@@ -9,7 +9,7 @@
 <body>
     <header>
         <h1>Welcome {{user.firstName}}</h1>
-        <a href="/new/creation">Create</a>
+        <a href='/new/creation'>Create</a>
         <a href="/logout">Logout</a>
     </header>
     <div>
@@ -22,10 +22,14 @@
                 <td>Actions</td>
             </tr>
             <tr>
-                {% for recipe in recipes %}
-                <td>{{recipe.name}}</td>
-                <td>{{recipe.time}}</td>
-                <td><a href="/view">View</a><a href="/edit">EDIT</a><a href="/delete">DESTROY</a></td>
+                {% for creation in creation %}
+                <td>{{creation.name}}</td>
+                {% if creation.time == 1 %}
+                <td>Yes</td>
+                {% else %}
+                <td>No</td>
+                {% endif %}
+                <td><a href="/view/creation/{{creation.id}}">View</a><a href="/edit/creation/{{creation.id}}">EDIT</a><a href="/delete/creation/{{creation.id}}">DESTROY</a></td>
                 {% endfor %}
             </tr>
         </table>
