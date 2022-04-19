@@ -1,5 +1,3 @@
-from unittest import result
-from winreg import QueryInfoKey
 from flask_app.config.pymysqlconnection import MySQLConnection, connectToMySQL
 from flask_bcrypt import Bcrypt
 from flask import flash
