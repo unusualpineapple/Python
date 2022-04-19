@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Add New Recipe</h1>
+        <a href="/dashboard">Create</a>
+        <a href="/logout">Logout</a>
+    </header>
+    <form action="/new/recipe">
+        <label for="name">name creation</label>
+        <input type="text" name="name">
+        <label for="description">what is this creation</label>
+        <textarea name="description"></textarea>
+        <label for="instructions">How Do I Make</label>
+        <textarea name="instructions"></textarea>
+        <label for="date">when was this made</label>
+        <input type="date" name="date">
+        <label for="time">under 30 minutes??</label>
+        <input type="radio" name="time">
+
+    </form>
+
+</body>
+</html>

@@ -8,9 +8,28 @@
 </head>
 <body>
     <header>
-        <h1>welcome {{user.firstName}}</h1>
-        <a href="/createrecipe">Create</a>
+        <h1>Welcome {{user.firstName}}</h1>
+        <a href="/new/creation">Create</a>
         <a href="/logout">Logout</a>
     </header>
+    <div>
+        <h3>These are the recipes you know</h3>
+        
+        <table>
+            <tr>
+                <td>Name</td>
+                <td>Under 30?</td>
+                <td>Actions</td>
+            </tr>
+            <tr>
+                {% for recipe in recipes %}
+                <td>{{recipe.name}}</td>
+                <td>{{recipe.time}}</td>
+                <td><a href="/view">View</a><a href="/edit">EDIT</a><a href="/delete">DESTROY</a></td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
 </body>
 </html>

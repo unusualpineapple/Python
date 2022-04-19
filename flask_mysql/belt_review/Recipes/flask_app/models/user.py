@@ -1,13 +1,9 @@
-from types import ClassMethodDescriptorType
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.config.mysqlconnection import MySQLConnection
-from flask_bcrypt import Bcrypt
-from flask import flash
 import re
-from flask_app import app
+from flask import flash
 
 ereg = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-z0-9._-]+\.[a-zA-Z]+$')
-bcrypt = Bcrypt(app)
+
 
 class User:
     def __init__(self,data):
@@ -20,43 +16,49 @@ class User:
         self.updatedAt = data['updatedAt']
 
     @classmethod
-    def createuser(cls):
-        query = 'insert into user (firstName, lastName, email, password) values (%(firstName)s, %(lastName)s, %(email)s, %(passwords)s)'
-        result = connectToMySQL('recipes').query_db(query)
+    def createuser(cls, data):
+        query = 'insert into user (firstName, lastName, email, password, createdAt, updatedAt) values (%(firstName)s, %(lastName)s, %(email)s, %(password)s, NOW(), NOW());'
+        result = connectToMySQL('recipes').query_db(query,data)
         return result
     
     @classmethod
     def getEmail(cls,data):
-        query = 'select * from account where email = %(email)s'
+        query = 'select * from user where email = %(email)s'
         result = connectToMySQL('recipes').query_db(query,data)
         if len(result) <1:
             return False
+        return cls(result[0])
+
+    @classmethod
+    def getByID(cls,data):
+        query = 'select * from user where id = %(id)s'
+        result = connectToMySQL('recipes').query_db(query,data)
         return cls(result[0])
     
     @staticmethod
     def validation(result):
         is_valid = True
-        query = 'select * from account where email = %(email)s'
+        query = 'select * from user where email = %(email)s'
         results = connectToMySQL('recipes').query_db(query, result)
-        if len(result['firstname']) <= 1:
-            flash('dude how short is your name??')
+        if len(result['firstName']) <= 1:
+            flash('your first name is blank?? try me')
             is_valid = False
-        if len(result['lastname']) <= 1:
-            flash('what country are you from????')
+        if len(result['lastName']) <= 1:
+            flash('last name has no letters thats interesting')
             is_valid = False
         if len(result['email']) <= 5:            
-            flash('ha your email is too short try again')
+            flash('is that really an email??')
             is_valid = False
         if len(results) >= 1:
-            flash('wow buddy thats ther same one try again')
+            flash('already got that email goodbye')
             is_valid = False
-        if not EREG.match(result['email']):
-            flash('hey dog your email isnt an email what you doing????????')
+        if not ereg.match(result['email']):
+            flash('thats not an email try again')
             is_valid = False
         if len(result['password']) <= 5:
-            flash('your password is long make it longer')
+            flash('password too short')
             is_valid = False
         if not result['password'] == result['confirmpassword']:
-            flash('you didnt have the same password fool')
+            flash('you didnt have the same password')
             is_valid = False
         return is_valid
