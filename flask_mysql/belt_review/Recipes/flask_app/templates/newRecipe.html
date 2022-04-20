@@ -14,14 +14,14 @@
         <a href="/dashboard">dashboard</a>
         <a href="/logout">Logout</a>
     </header>
-    {% with messages = get_flashed_messages(category_filter=['recipe']) %}
-    {% if messages %}
-    <div>
-        {% for message in messages %}
-        <p>{{message}}</p>
-        {% endfor %}
-    </div>
-    {% endif %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
     {% endwith %}
     <form action="/create/creation" method="post">
         <label for="name">name creation</label>

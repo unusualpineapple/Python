@@ -1,6 +1,7 @@
 from unittest import result
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask import flash
+from flask import flash, session
+
 
 class Creation:
     db = 'recipes'
@@ -26,9 +27,14 @@ class Creation:
         query = 'select * from creations;'
         result = connectToMySQL(cls.db).query_db(query)
         allCreations=[]
+        print(f'result={result}')
+        print(type(result))
         for creation in result:
             print(creation['date'])
+            print(f"user_id = {creation['user_id']}")
+            print(f"logged_in = {session['user_id']}")
             allCreations.append(cls(creation))
+            print(allCreations)
         return allCreations
 
     @classmethod

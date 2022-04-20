@@ -29,7 +29,10 @@
                 {% else %}
                 <td>No</td>
                 {% endif %}
-                <td><a href="/view/creation/{{creation.id}}">View</a><a href="/edit/creation/{{creation.id}}">EDIT</a><a href="/delete/creation/{{creation.id}}">DESTROY</a></td>
+                <td><a href="/view/creation/{{creation.id}}">View</a>
+                    {% if creation.user_id == session.user_id %}
+                    <a href="/edit/creation/{{creation.id}}">EDIT</a><a href="/delete/creation/{{creation.id}}">DESTROY</a></td>
+                    {% endif %}
                 {% endfor %}
             </tr>
         </table>
